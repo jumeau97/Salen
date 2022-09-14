@@ -1,0 +1,90 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+  <mat-card>
+    <mat-card-title>
+      DETAILS
+    </mat-card-title>
+    <mat-card-content>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Numéro de place: {{place.numeroPlace}}</h3>
+            </div>
+            <div class="card-body">
+              <!-- <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Date de recouvrement</th>
+                    <th>Etat de paiement</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let l of detailPay">
+                    <td>{{l.jourRecou.dateRecou | date:'mediumDate'}}</td>
+                    <td *ngIf="l.montantPayement==0" style="color:red">Non payé</td>
+                    <td *ngIf="l.montantPayement!=0" style="color:gree">Payé</td>
+                  </tr>
+                </tbody>
+              </table> -->
+              <mat-form-field appearance="standard">
+                <mat-label>Rechercher</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Amad" #input>
+              </mat-form-field>
+              
+              <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+              
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="dateRecou">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> N° place </th>
+                    <td mat-cell *matCellDef="let row"> {{row.jourRecou.dateRecou | date:'mediumDate'}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="etat">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> N° place </th>
+                    <td mat-cell *matCellDef="let row" > 
+                      <label *ngIf="row.montantPayement==0" style="color: red;">Non Payé</label>
+                      <label *ngIf="row.montantPayement!=0" style="color: green;">Payé</label>
+                     </td>
+                    <!-- <td mat-cell *matCellDef="let row" *ngIf="row.montantPayement!=0"> Payé </td> -->
+                  </ng-container>
+              
+      
+      
+                  <!-- <ng-container matColumnDef="etat">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row"> 
+                      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="detailsPlace(row)">
+                        <mat-icon>grain icon</mat-icon>
+                      </button>                  
+                   </td>
+                  </ng-container> -->
+              
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+                  <!-- Row shown when there is no matching data. -->
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">Aucune donnée correspondant au filtre "{{input.value}}"</td>
+                  </tr>
+                </table>
+              
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+              </div>
+            </div>
+          </div>
+        
+    </mat-card-content>
+
+ 
+  </mat-card>
+
+  
+  </div>
+  </div>
+  <!-- /.row -->
+  </div><!-- /.container-fluid -->
+  </section>
+  
+  

@@ -1,0 +1,229 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+  <mat-card>
+    <mat-card-title>
+      ETAT GLOBAL DE PAIEMENT
+    </mat-card-title>
+    <mat-card-content>
+        <mat-tab-group>
+            <mat-tab label="Etat de paiement journalier">
+                 <mat-card>
+                    
+            <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Liste des places</h3>
+                </div>
+                <form >
+                    <div class="row">
+                      <div class="col-4">
+                          <mat-form-field appearance="fill">
+                              <mat-label>choisir la mairie</mat-label>
+                              <mat-select (selectionChange)="selectMairie($event)">
+                                <mat-option>None</mat-option>
+                                <mat-option  *ngFor="let m of mairies" [value]="m">{{m?.libelleMairie}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>         
+                      </div>
+                      <div class="col-2">
+                        <mat-form-field appearance="fill">
+                          <mat-label>choisir le marché</mat-label>
+                          <mat-select (selectionChange)="OtherselectMarket($event)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let mkt of markets" [value]="mkt">{{mkt.libelleMarcher}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>       
+                      </div>
+
+                     <div class="col-2">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Input & change events</mat-label>
+                        <input matInput [matDatepicker]="picker"
+                               (dateInput)="addEvent('input', $event)" >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                     </div>
+              
+              
+                    </div>
+              
+              
+                    <!-- <div>
+                      <button mat-raised-button color="accent" type="submit">Enregistrer</button>
+                    </div> -->
+                    
+                </form>
+           
+         
+              </div>
+
+    <section class="content" *ngIf="nbreNotPayement">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Statistiques</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-success">
+                          Payé
+                        </div>
+                      </div>
+                      Nombre: {{nbrePay}} <button class="badge bg-primary"><span class="badge bg-primary" (click)="LatePlace()">Voir plus de details</span></button><br />
+                      Somme totale: {{nbrePay*50}} Fcfa <br />
+                      <!-- <small>.ribbon-wrapper.ribbon-lg .ribbon</small> -->
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="position-relative p-3 bg-gray" style="height: 180px">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-danger">
+                          Non payé
+                        </div>
+                      </div>
+                      Nombre: {{nbreNotPayement}}  <button class="badge bg-primary"><div class="badge bg-primary" (click)="NotLatePlace()">Voir plus de details</div></button><br />
+                      Somme totale: {{nbreNotPayement*50}} Fcfa <br />
+                    </div>
+                  </div>
+                </div>
+       
+       
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+                 </mat-card>
+            </mat-tab>
+            <mat-tab label="Etat">
+              <mat-card>
+                 
+         <div class="card">
+             <div class="card-header">
+               <h3 class="card-title">Liste des places</h3>
+             </div>
+             <form >
+                 <div class="row">
+                   <div class="col-4">
+                       <mat-form-field appearance="fill">
+                           <mat-label>choisir la mairie</mat-label>
+                           <mat-select (selectionChange)="selectMairie($event)">
+                             <mat-option>None</mat-option>
+                             <mat-option  *ngFor="let m of mairies" [value]="m">{{m?.libelleMairie}}</mat-option>
+                           </mat-select>
+                         </mat-form-field>         
+                   </div>
+                   <div class="col-2">
+                     <mat-form-field appearance="fill">
+                       <mat-label>choisir le marché</mat-label>
+                       <mat-select (selectionChange)="selectMarket($event)">
+                         <mat-option>None</mat-option>
+                         <mat-option *ngFor="let mkt of markets" [value]="mkt">{{mkt.libelleMarcher}}</mat-option>
+                       </mat-select>
+                     </mat-form-field>       
+                   </div>
+           
+           
+                 </div>
+           
+           
+                 <!-- <div>
+                   <button mat-raised-button color="accent" type="submit">Enregistrer</button>
+                 </div> -->
+                 
+             </form>
+        
+             <!-- <div class="card-body" *ngIf="places">
+               <table id="example1" class="table table-bordered table-striped">
+                 <thead>
+                 <tr>
+                   <th>N° Place</th>
+                   <th>Details</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr *ngFor="let p of places">
+                   <td>{{p.numeroPlace}}</td>
+                   <td>
+                     
+                     <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="detailsPlace(p)">
+                         <mat-icon >grain icon</mat-icon>
+                       </button>
+                   </td>
+                 </tr>
+
+                 </tbody>
+
+               </table>
+             </div> -->
+             <!-- ========================integration maetrial tabs=================== -->
+             <mat-form-field appearance="standard">
+               <mat-label>Rechercher</mat-label>
+               <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Amad" #input>
+             </mat-form-field>
+             
+             <div class="mat-elevation-z8">
+               <table mat-table [dataSource]="dataSource" matSort>
+             
+                 <!-- ID Column -->
+                 <ng-container matColumnDef="numeroPlace">
+                   <th mat-header-cell *matHeaderCellDef mat-sort-header> N° place </th>
+                   <td mat-cell *matCellDef="let row"> {{row.numeroPlace}} </td>
+                 </ng-container>
+             
+     
+     
+                 <ng-container matColumnDef="action">
+                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                   <td mat-cell *matCellDef="let row"> 
+                     <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="detailsPlace(row)">
+                       <mat-icon>grain icon</mat-icon>
+                     </button>                  
+                  </td>
+                 </ng-container>
+             
+                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+             
+                 <!-- Row shown when there is no matching data. -->
+                 <tr class="mat-row" *matNoDataRow>
+                   <td class="mat-cell" colspan="4">Aucune donnée correspondant au filtre "{{input.value}}"</td>
+                 </tr>
+               </table>
+             
+               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+             </div>
+           </div>
+              </mat-card>
+         </mat-tab>
+            <!-- <mat-tab label="Second"> Content 2 </mat-tab>
+            <mat-tab label="Third"> Content 3 </mat-tab> -->
+          </mat-tab-group>
+           
+    </mat-card-content>
+    
+ 
+  </mat-card>
+
+  
+  </div>
+  </div>
+  <!-- /.row -->
+  </div><!-- /.container-fluid -->
+  </section>
+  
+  

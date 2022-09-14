@@ -1,0 +1,74 @@
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Utilisateur</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                <li class="breadcrumb-item">Liste des utilisateurs</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-12">
+              <div class="card card-warning">
+                <div class="card-header">
+                  <h3 class="card-title">La liste des utilisateurs</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                      <!-- <th>Code</th> -->
+                      <th>Username</th>
+                      <th>Nom</th>
+                      <th>Prenom</th>
+                      <th>Telephone</th>
+                      <th>E-mail</th>
+                      <th>Adresse</th>
+                      <th>Mairie</th>
+                      <th *ngIf="currentUser.role=='super_admin'">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let user of listeUtilisateur">
+                    <tr>
+                      <!-- <td>{{user.codeUtilisateur}}</td> -->
+                      <td>{{user.username}}</td>
+                      <td>{{user.nomUtilisateur}}
+                      </td>
+                      <td>{{user.prenomUtilisateur}}</td>
+                      <td>{{user.telephoneUtilisateur}}</td>
+                      <td> {{user.emailUtilisateur}}</td>
+                      <td>{{user.adresseUtilisateur}}</td>
+                      <td>{{user.mairie.libelleMairie}}</td>
+
+                      <td>
+                        <button class="btn btn-danger" *ngIf="currentUser.role=='super_admin'"> <a (click)="onDelete(user)" class="nav-icon fas fa-tree">Supp</a> </button>
+                        <button class="btn btn-warning"> <a (click)="onUpdate(user)" class="far fa-circle nav-icon">Edit</a> </button>
+                      </td> 
+                    </tr>
+     
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
+  
+            <!--/.col (right) -->
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->

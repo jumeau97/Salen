@@ -1,0 +1,70 @@
+<ion-header translucent>
+  <ion-toolbar color="warning">
+    <ion-title>Paiement</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Informations</ion-card-subtitle>
+      <!-- <ion-card-title>Card Title</ion-card-title> -->
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Place N°: {{place?.numeroPlace}}</ion-label>
+      </ion-item>
+      <ion-item color="light">
+        <ion-input (change)="dateChange($event)" name="mydate" type="date" color="warning"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label *ngIf="msg == true" color="danger" style="text-align: center;">
+          <h4>{{message.sujet}}</h4>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="msgPay==true || valid==true">
+    <ion-card-header>
+      <ion-card-subtitle>Ticket</ion-card-subtitle>
+      <ion-card-title *ngIf="valid==true" color="success" style="text-align: center;">Ticket payé</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+    <ion-item lines="none">
+      <label for="">
+        <h2>Mairie</h2>
+        <h4>{{marchand.mairie}}</h4>
+      </label>
+    </ion-item>
+    <ion-item lines="none">
+      <label for="">
+        <h2>Marché</h2>
+        <h4>{{marchand.marche}}</h4>
+      </label>
+    </ion-item>
+    <ion-item lines="none">
+      <label for="">
+        <h2>Nom & prénom</h2>
+        <h4>{{marchand.prenom}} {{marchand.nom}}</h4>
+      </label>
+    </ion-item>
+    <ion-item lines="none">
+      <label for="">
+        <h2>Montant payé</h2>
+        <h4>50 FCFA</h4>
+      </label>
+    </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab horizontal="end" vertical="center" slot="fixed" *ngIf="msgPay==true">
+    <ion-fab-button color="success" (click)="printStuff()">
+      <ion-icon name="print-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

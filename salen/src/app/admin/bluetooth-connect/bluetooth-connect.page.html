@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>bluetooth-connect</ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-menu-button></ion-menu-button> -->
+    <ion-button (click)="dismissModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+    <!-- <ion-icon name="ellipsis-vertical-outline"></ion-icon> -->
+    </ion-buttons> 
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of bluetoothList" (click)="selectPrinter(item.id)">
+        {{item.name}} {{item.id}}
+    </ion-item>
+    </ion-list>
+</ion-content>

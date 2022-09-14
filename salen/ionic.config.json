@@ -1,0 +1,7 @@
+{
+  "name": "salen",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

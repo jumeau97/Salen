@@ -1,0 +1,40 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Détails</ion-title>
+    <ion-buttons slot="end">
+    <ion-title><ion-button (click)="close()">
+      <ion-icon name="close-outline"></ion-icon>
+      <!-- Fermer -->
+    </ion-button></ion-title>
+    
+    </ion-buttons> 
+  </ion-toolbar>
+  
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" value="paie">
+      <ion-segment-button value="paie">
+        <ion-label>Payer</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="notpaie">
+        <ion-label>Non payer</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf = "segmentStatus == 'paie'">
+  <ion-item *ngFor="let p of listpaie" color="success">
+    <ion-label>
+      {{p.jourRecou.dateRecou | date:'longDate' }}
+    </ion-label>
+  </ion-item>
+</div>
+<div *ngIf = "segmentStatus == 'notpaie'">
+  <ion-item lines="none" *ngFor="let p of listNoPaie" color="danger">
+    <ion-label>
+      {{p.jourRecou.dateRecou | date:'longDate'}}
+    </ion-label>
+  </ion-item>
+</div>
+</ion-content>

@@ -1,0 +1,146 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+  <mat-card>
+    <mat-card-title>
+      AFFECTATION: PLACE - MARCHE
+    </mat-card-title>
+    <mat-card-content>
+      <form class="example-form" #f="ngForm" (ngSubmit)="savePlace(f.value)">
+
+      
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Marché</mat-label>
+            <mat-select  (selectionChange)="getSelect($event)" >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let m of listeMarcher" [value]="m" >{{m.libelleMarcher}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field  appearance="fill">
+            <mat-label >Nombre de place</mat-label>
+            <input name="nbreplace" matInput name="place" [(ngModel)]="place">
+          </mat-form-field>
+      
+  
+      
+          <div class="">
+            <button mat-raised-button type="submit"  color="primary">Enregistrer</button>
+          </div>
+      
+        </form>
+    </mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="Marché"> 
+        <mat-form-field appearance="standard">
+          <mat-label>Rechercher</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Amad" #input>
+        </mat-form-field>
+        
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+        
+            <!-- ID Column -->
+            <ng-container matColumnDef="libelle">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Marché </th>
+              <td mat-cell *matCellDef="let row"> {{row.libelleMarcher}} </td>
+            </ng-container>
+        
+            <!-- Progress Column -->
+            <ng-container matColumnDef="mairie">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Mairie </th>
+              <td mat-cell *matCellDef="let row"> {{row.mairie.libelleMairie}} </td>
+            </ng-container>
+        
+
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Places </th>
+              <td mat-cell *matCellDef="let row"> 
+                <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="detailsPlace(row)">
+                  <mat-icon>view_comfy</mat-icon>
+                </button>                  
+             </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">Aucune donnée correspondant au filtre "{{input.value}}"</td>
+            </tr>
+          </table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+       </mat-tab>
+      <mat-tab label="Mairie">
+        
+          <div class="col-4">
+              <mat-form-field appearance="fill">
+                  <mat-label>choisir la mairie</mat-label>
+                  <mat-select (selectionChange)="selectMairie($event)">
+                    <mat-option>None</mat-option>
+                    <mat-option  *ngFor="let m of mairies" [value]="m">{{m?.libelleMairie}}</mat-option>
+                  </mat-select>
+                </mat-form-field>         
+          </div>
+    
+         <!-- =======================Table====================== -->
+         <mat-form-field appearance="standard">
+          <mat-label>Rechercher</mat-label>
+          <input matInput (keyup)="applyFilterOfMairie($event)" placeholder="Ex. Amad" #input>
+        </mat-form-field>
+        
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource1" matSort>
+        
+            <!-- ID Column -->
+            <ng-container matColumnDef="libelle">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Marché </th>
+              <td mat-cell *matCellDef="let row"> {{row.libelleMarcher}} </td>
+            </ng-container>
+        
+            <!-- Progress Column -->
+            <ng-container matColumnDef="mairie">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Mairie </th>
+              <td mat-cell *matCellDef="let row"> {{row.mairie.libelleMairie}} </td>
+            </ng-container>
+        
+
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Places </th>
+              <td mat-cell *matCellDef="let row"> 
+                <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="detailsPlace(row)">
+                  <mat-icon>view_comfy</mat-icon>
+                </button>                  
+             </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">Aucune donnée correspondant au filtre "{{input.value}}"</td>
+            </tr>
+          </table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+         </mat-tab>
+    </mat-tab-group>
+    
+  
+  </mat-card>
+
+  </div>
+  </div>
+  <!-- /.row -->
+  </div><!-- /.container-fluid -->
+  </section>
+  
+  

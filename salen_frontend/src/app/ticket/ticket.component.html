@@ -1,0 +1,100 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+  <mat-card>
+    <mat-card-title>
+      TICKETS
+    </mat-card-title>
+    <mat-card-content>
+        <!-- <div class="card-footer">
+          <div class="">
+            <button mat-flat-button color="primary" routerLink="/add/days-recouvrement">Crée date de recouvrement</button>
+            <button mat-flat-button color="accent" routerLink="/ticket" disabled>Crée ticket</button>
+          </div>
+          </div> -->
+        
+    </mat-card-content>
+    <form #f="ngForm" (ngSubmit)="createticket(f.value)">
+      <div class="row">
+        <div class="col-4">
+            <mat-form-field appearance="fill">
+                <mat-label>choisir le marché</mat-label>
+                <mat-select (selectionChange)="selectMarket($event)">
+                  <mat-option>None</mat-option>
+                  <mat-option  *ngFor="let m of marketsbyMairie" [value]="m">{{m.libelleMarcher}}</mat-option>
+                </mat-select>
+              </mat-form-field>         
+        </div>
+        <div class="col-2">
+          <mat-form-field appearance="fill">
+            <mat-label>choisir la date</mat-label>
+            <mat-select name="dayRe" ngModel>
+              <mat-option>None</mat-option>
+              <mat-option  *ngFor="let d of DaysRec" [value]="d">{{d.dateRecou}}</mat-option>
+            </mat-select>
+          </mat-form-field>       
+        </div>
+
+
+      </div>
+
+
+      <div>
+        <button mat-raised-button color="accent" type="submit">Enregistrer</button>
+      </div>
+      
+  </form>
+ 
+  </mat-card>
+  <mat-card>
+    <!-- <mat-card-title>
+      title
+    </mat-card-title> -->
+    <mat-card-content>
+      <div class="col-12">
+        <div class="card card-warning">
+          <div class="card-header">
+            <h3 class="card-title">TICKETS CREES</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Mairie N°</th>
+                <!-- <th>Libelle Mairie</th> -->
+                <!-- <th *ngIf="currentUser.role=='super_admin'">Action</th> -->
+              </tr>
+              </thead>
+              <tbody *ngFor="let d of dtecreate">
+            
+              <tr>
+                <td>{{d.id}}</td>
+                <!-- <td>cell2</td> -->
+
+               
+      <!-- <td *ngIf="currentUser.role=='super_admin'">
+        <button class="btn btn-danger"> <a (click)="onDelete(marie)" class="nav-icon fas fa-tree">Supp</a> </button>
+        <button class="btn btn-warning"> <a (click)="onUpdate(marie)" class="far fa-circle nav-icon">Edit</a> </button>
+      </td>  -->
+              </tr>
+             
+              </tbody>
+          
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  
+  </div>
+  </div>
+  <!-- /.row -->
+  </div><!-- /.container-fluid -->
+  </section>
+  
+  

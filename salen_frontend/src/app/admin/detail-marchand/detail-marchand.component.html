@@ -1,0 +1,92 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+  <mat-card>
+    <mat-card-title>
+      DETAILS
+    </mat-card-title>
+    <mat-card-content>
+        <!-- <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Nom & prénom: {{marchand.nom}} {{marchand.prenom}} </h3>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Date occupation</th>
+                    <th>N° place</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let l of places">
+                    <td>{{l.dateAffecterPlaceMarchand | date}}</td>
+                    <td>{{l.place.numeroPlace}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-right">
+                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div> -->
+          <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+          </mat-form-field>
+          
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+          
+              <!-- ID Column -->
+              <ng-container matColumnDef="dateOccup">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date occupation </th>
+                <td mat-cell *matCellDef="let row"> {{row.dateAffecterPlaceMarchand | date}} </td>
+              </ng-container>
+          
+              <!-- Progress Column -->
+              <ng-container matColumnDef="numero">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero Place </th>
+                <td mat-cell *matCellDef="let row"> {{row.place.numeroPlace}} </td>
+              </ng-container>
+
+          
+              <!-- Fruit Column -->
+              <ng-container matColumnDef="retrait" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Retrait </th>
+                <td mat-cell *matCellDef="let row"> 
+                  <mat-slide-toggle name="check"  *ngIf="row.place.etatAM == true" [(ngModel)]="row.place.etatAM" (change)="removeTrader(row)" ></mat-slide-toggle>
+                 </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+          </div>
+    </mat-card-content>
+
+ 
+  </mat-card>
+
+  
+  </div>
+  </div>
+  <!-- /.row -->
+  </div><!-- /.container-fluid -->
+  </section>
+  
+  

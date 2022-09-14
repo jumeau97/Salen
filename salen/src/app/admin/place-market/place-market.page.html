@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-icon name="arrow-back" routerLink="/admin/markets"></ion-icon>
+    <ion-title>Places</ion-title>
+    </ion-buttons>  
+    <ion-buttons slot="end">
+      <!-- <ion-menu-button></ion-menu-button> -->
+    <ion-title><ion-button (click)="bluetoothModal()">connect</ion-button></ion-title>
+    <!-- <ion-icon name="ellipsis-vertical-outline"></ion-icon> -->
+    </ion-buttons> 
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="term"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let p of listPlaceScroll | filter:term">
+<ion-item-sliding>
+  <ion-item>
+    <!-- <ion-icon slot="end" color="warning" name="print" (click)="presentPopover(p.place)"></ion-icon> -->
+    <ion-icon slot="end" color="warning" name="print" (click)="presentModal(p)"></ion-icon>
+    <ion-label class="ion-text-wrap">
+      <ion-text color="gray">
+        <h3>Numero place: {{p.place.numeroPlace}}</h3>
+      </ion-text>
+      <!-- <p>{{p.utilisateur.prenomUtilisateur}} {{p.utilisateur.nomUtilisateur}}</p> -->
+    </ion-label>
+  </ion-item>
+  <ion-item-options>
+    <ion-item-option color="warning" (click)="placeDetailModal(p)">
+      <ion-icon slot="start" name="list"></ion-icon>
+      Details
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>
+</ion-list>
+
+<!-- infinite scroll -->
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Chargement de plus de données...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-title style="font-size: 12px; text-align: center;"><span style="font-weight: bold;">SALEN</span> -Copyright  tous droits réservés © 2021</ion-title>
+  </ion-toolbar>
+</ion-footer>
+
+<script>
+  const searchbar = document.querySelector('ion-searchbar');
+  const items = Array.from(document.querySelector('ion-list').children);
+
+  searchbar.addEventListener('ionInput', handleInput);
+
+  function handleInput(event) {
+    const query = event.target.value.toLowerCase();
+    requestAnimationFrame(() => {
+      items.forEach((item) => {
+        const shouldShow = item.textContent.toLowerCase().indexOf(query) > -1;
+        item.style.display = shouldShow ? 'block' : 'none';
+      });
+    });
+  }
+</script>

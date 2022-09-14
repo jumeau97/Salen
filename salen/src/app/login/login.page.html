@@ -1,0 +1,25 @@
+
+<ion-content>
+  <div style="text-align: center;margin-top: 70px; margin-bottom: 40px;">
+    <img src="../../assets/AdminLTELogo.png" alt="">
+  </div>
+  <form>
+    <ion-item>
+      <ion-label color=""  position="floating">Nom d'utilisateur</ion-label>
+      <ion-input color="" type="text" name="login" [(ngModel)]="utilisateur.username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="" position="floating">Mot de passe</ion-label>
+      <ion-input color="" type="password" name="password"  [(ngModel)]="utilisateur.password"></ion-input>
+    </ion-item>
+    <ion-button class="but" (click)="login()" expand="block" shap="round" >
+      Login
+    </ion-button>
+
+  </form>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-title style="font-size: 12px; text-align: center;"><span style="font-weight: bold;">SALEN</span> -Copyright  tous droits réservés © 2021</ion-title>
+  </ion-toolbar>
+</ion-footer>

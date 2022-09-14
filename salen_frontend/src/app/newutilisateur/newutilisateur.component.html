@@ -1,0 +1,119 @@
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Utilisateur</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a routerLink="">Accueil</a></li>
+              <li class="breadcrumb-item">Utilisateur</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Nouveau utilisateur</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form #f="ngForm" (ngSubmit)="onAddUtilisateur(f.value)">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+
+                      <div class="form-group">
+                        <!-- {{f.form.valid}} -->
+                        <label for="">Nom</label>
+                        <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched"  class="form-control"  placeholder="Nom" name="nomUtilisateur" (ngModel)="utilisateur" >
+                        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Champ réquis</small>
+                      </div>
+                 
+                      <div class="form-group">
+                        <label for="">Téléphone</label>
+                        <input type="phone" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control"  placeholder="Téléphone" name="telephoneUtilisateur" (ngModel)="utilisateur">
+                        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Champ réquis</small>
+                      </div> 
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="">Prénom</label>
+                        <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control"  placeholder="Prénom" name="prenomUtilisateur" (ngModel)="utilisateur">
+                        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Champ réquis</small>
+                      </div>
+
+                     
+                        <div class="form-group">
+                          <label for="">E-Mail</label>
+                          <input type="mail" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control"  placeholder="E-Mail" name="emailUtilisateur" (ngModel)="utilisateur">
+                          <small class="text-danger" [class.d-none]="name.valid || name.untouched">Champ réquis</small>
+                        </div>
+                    
+                   
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="">Adresse</label>
+                        <input type="text" class="form-control"  placeholder="Adresse" name="adresseUtilisateur" (ngModel)="utilisateur">
+                      </div>   
+                      <div class="form-group">
+                        <label for="">Login</label>
+                        <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control"  placeholder="Login" name="username" (ngModel)="utilisateur">
+                        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Champ réquis</small>
+                      </div>                      
+                    </div>
+
+
+                      
+                    <div class="col-md-6">
+                      <div class="form-group" *ngIf="currentUser.role=='super_admin'">
+                        <label>Mairie</label>
+                        <select  class="form-control" name="mairies" (change)="select($event)" >
+                         <option selected="selected" disabled>choisir la mairie</option>
+                        <option *ngFor="let m of mairie" [value]="m.idMairie">{{m.libelleMairie}}</option>
+                        </select>
+                        
+                      </div> 
+              
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group" *ngIf="currentUser.role=='super_admin'" >
+                        <label>Role</label>
+                        <select class="form-control select2bs4" required style="width: 100%;" name="role" id="role" (ngModel)="utilisateur">
+                          <option selected="selected" disabled>Choisir un role</option>
+                          <option *ngFor="let role of listeRole" value="{{role.libelleRole}}">{{role.libelleRole}}</option>
+                        </select>
+                      </div> 
+                       
+                    </div>
+                 
+                  </div>
+                </div>
+           
+
+                <div class="card-footer">
+                  <button class="btn btn-warning"  type="submit">Enregistrer</button>
+                </div>
+              </form>
+            </div>
+          
+          </div>
+     
+
+        </div>
+    
+      </div>
+    </section>
+    <ngx-spinner></ngx-spinner>
+    <!-- /.content -->
