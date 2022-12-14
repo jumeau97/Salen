@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //  host:"http://192.168.0.111:9012/salen/api/",
- host:"http://localhost:9012/salen/api/",
+   host:"http://192.168.1.141:9012/salen/api/",
+//  host:"http://localhost:9012/salen/api/",
 };
 
 /*

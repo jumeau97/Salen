@@ -29,6 +29,8 @@ export class BluetoothConnectPage implements OnInit {
    
       //List of bluetooth device list
       this.bluetoothList=resp;
+      console.log(this.bluetoothList);
+      
     });
   }
 

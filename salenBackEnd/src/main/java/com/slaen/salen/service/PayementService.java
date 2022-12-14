@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @Service
 public class PayementService {
+
     @Autowired
     PayementRepository payementRepository;
     public Response savePaiement(Payement paiement){
@@ -47,7 +48,7 @@ public class PayementService {
                     paie.setResteApaye(payements.getResteApaye());
 
                     payementRepository.save(paie);
-                };
+                }
 
             }
         }catch (Exception e){

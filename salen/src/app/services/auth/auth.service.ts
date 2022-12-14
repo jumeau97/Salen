@@ -10,6 +10,6 @@ host=environment.host
   constructor(private http: HttpClient) { }
 
   public login(utilisateur: any) {
-    return this.http.post(this.host+'/utilisateur/authRecou', utilisateur );
+    return this.http.post(this.host+'utilisateur/authRecou', utilisateur );
   }
 }
